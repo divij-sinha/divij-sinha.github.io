@@ -1,2 +1,3 @@
-# divij-sinha.github.io
-Personal website
+# divij-sinha.github.io[divij-sinha.github.io]
+
+divij-sinha.github.io[divij-sinha.github.io]
