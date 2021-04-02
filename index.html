@@ -11,34 +11,48 @@
 			h1 {font-family: "Gill Sans", "Gill Sans MT";}
 			h3 {font-family: "Gill Sans", "Gill Sans MT";}
 			h4 {font-family: "Gill Sans", "Gill Sans MT";}
-            a {border-bottom: 1px solid #333333; color: #333333; text-decoration: none;}
+            a {border-bottom: 2px solid #333333; color: #333333; text-decoration: none;}
             a:hover {border-bottom: 0;}
+            .nav {position: -webkit-sticky; position: sticky; top: 0; background: #eeeeee;}
+            .navul {list-style-type: none; margin: 0; padding: 0; overflow: hidden;}
+            .navli {float: right;}
+            .nava {display: block; text-align: center; padding: 38px 16px; text-decoration: none;}
         </style>
     </head>
-    <body>
-        <header>
-            <h1><strong>Divij Sinha</strong></h1>
-        </header>
-		<h3>Who I am</h3>
-        <p>I currently live and work in Bengaluru, India. <br>
-			In 2019, I graduated from BITS Pilani, Goa with a major in Electrical Engineering and a minor in Politics, Economics and Philosophy. I am interested in sports, sports analytics, trivia, film, comics and graphic design.
-		</p>
-        <h3>What I do</h3>
-        <p>
-			I am interested in inter-disciplinary research between STEM and Public Policy.	I work as a Research Assistant at the Urban Informatics Lab at the <a href="https://www.iihs.co.in" target="new">Indian Institute for Human Settlements</a>. I mainly work with public data, trying to glean more information from it, come up with methods to fill data gaps and turn it into publically consumable media. <br> 
+    <body> 
+        <div class = "nav">
+            <ul class = "navul">
+                <li class = "navli"><a class = "nava" href = ""> CV </a></li>
+                <li class = "navli"><a class = "nava" href = "#contact"> Contact </a></li>
+                <li class = "navli"><a class = "nava" href = "#projects"> Projects </a></li>
+                <li class = "navli"><a class = "nava" href = "#about"> About </a></li>
+                <li style="float: left;"><h1><strong>Divij Sinha</strong></h1></li>
+            </ul>
+        </div>
+        <br>
+		<h3 id = "about">About me</h3>
+        <p> I currently live and work in Bengaluru, India. <br>
+		    In 2019, I graduated from BITS Pilani, Goa with a major in Electrical Engineering and a minor in Politics, Economics and Philosophy. 
+            I am interested in working on inter-disciplinary research between STEM and Public Policy. I work as a Research Assistant at the Urban Informatics Lab at the <a href="https://www.iihs.co.in" target="new">Indian Institute for Human Settlements</a>. 
+            I mainly work with public data, trying to glean more information from it, come up with methods to fill data gaps and turn it into publically consumable media. 
+            Currently, I am looking at migration patterns across India, coming up with novel ways of projecting Indian populations (national, state, district and city) and looking at health indicators across underserved communities. <br> 
 			Previously, I have worked as a Data Science Intern at Genpact and as a Research Intern at the North Eastern Space Applications Center, Department of Space.
+            I am also fond of sports, sports analytics, trivia, film, comics and graphic design. <br>
 		</p>
-		<h3>What I'm good at</h3>
+        <div>
+            <img src="./bw.jpg" width=100%/>
+        </div>
+		<h3 id = "projects">Projects</h3>
         <ul>
-            <li>Python - numpy, pandas, matplotlib, bs4 etc.</li>
+            <!-- <li>Python - numpy, pandas, matplotlib, bs4 etc.</li>
             <li>R - ggplot, shiny</li>
             <li><i>Statistics and Modelling</i></li>
             <li><i>Reinforcement Learning</i></li>
 			<li>Photoshop</li>
-			<li>Writing exams - scored 99.92%ile (rank of ~200/235,000) in the Common Admission Test (CAT) for MBA programs in India. Was subsequently offered admission to IIM Calcutta (amongst others.)</li>
+			<li>Writing exams - scored 99.92%ile (rank of ~200/235,000) in the Common Admission Test (CAT) for MBA programs in India. Was subsequently offered admission to IIM Calcutta (amongst others.)</li> -->
         </ul>
         
-		<h3>Where to find me</h3>
+		<h3 id = "contact">Where to find me</h3>
             <p>
 			<a href="#">Mail - divijs at protonmail dot com</a><br>	
 			<a href="https://github.com/divij-sinha" target="new">Github</a><br>
