@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0" />
     <title>Divij Sinha</title>
     <meta name="description" content="Just a simple, personal website." />
+    <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="canonical" href="divij-sinha.github.io" />
     <style>
         html {
@@ -19,7 +20,7 @@
             font-family: "Segoe UI", sans-serif;
             font-size: 1.2rem;
             line-height: 1.6;
-            max-width: 60%;
+            max-width: 55%;
         }
 
         h1 {
@@ -28,7 +29,7 @@
             font-weight: 500;
         }
 
-        h3 {
+        h2 {
             scroll-margin-top: 8rem;
             font-family: "Gill Sans", "Gill Sans MT";
         }
@@ -72,6 +73,46 @@
             text-align: center;
             padding: 0.5rem 0.5rem;
             text-decoration: none;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+            gap: 1rem;
+        }
+
+        .grid-item {
+            /* background: white; */
+            border-radius: 0.7rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-header {
+            background: #a0a0a0;
+            color: #eeeeee;
+            padding: 0.5rem 1rem;
+        }
+
+        .item-header a {
+            background: #a0a0a0;
+            color: #eeeeee;
+            border-bottom: 0.15rem solid #eeeeee;
+        }
+
+        .item-header a:hover {
+            border-bottom: 0.15rem solid #a0a0a0;
+        }
+
+        .item-body {
+            padding: 0.5rem;
+            flex-grow: 1;
+            font-size: 0.;
+        }
+
+        .hiddenlink {
+            border-bottom: 0.15rem solid #eeeeee;
         }
 
         @media screen and (max-width: 600px) {
@@ -120,121 +161,187 @@
 
 <body>
     <div class="nav">
-        <h1><b>Divij Sinha</b></h1>
+        <a class="hiddenlink" href="https://divij-sinha.github.io">
+            <h1><b>DS</b></h1>
+        </a>
 
         <ul class="navul">
             <li class="navli"><a class="nava" href="#about"> About </a></li>
-            <li class="navli"><a class="nava" href="#publications"> Publications </a></li>
             <li class="navli"><a class="nava" href="#projects"> Projects </a></li>
             <li class="navli"><a class="nava" href="#contact"> Contact </a></li>
-            <li class="navli"><a class="nava" href="Divij Sinha.pdf" download> CV </a></li>
+            <li class="navli"><a class="nava" href="Divij Sinha.pdf" target="new"> CV </a></li>
         </ul>
     </div>
-    <br>
-    <h3 id="about">About me</h3>
+    <h2 id="about">About me</h2>
     <p>
-        I currently live in Chicago, IL. <br><br>
         I'm a data scientist and policy analyst, starting a PhD in Political Economy at the University of Chicago in
-        Fall 2025. <br><br>
+        Fall 2025.
+    </p>
+    <p>
         I am currently a Research Engineer at the Mansueto Institute for Urban Innovation, at the University of Chicago,
-        and an adjunct lecturer at the University of Illinois, Chicago. <br>
+        and an adjunct lecturer at the University of Illinois, Chicago.
+    </p>
+    <p>
         I graduated from the MS in Computational Analysis and Public Policy at the University of Chicago in 2024, and
         prior to that I was at the Urban Informatics Lab at the Indian Institute for Human Settlements. <br>
         Throughout my career, I've been driven by the belief that technology, when thoughtfully applied, can be a
         powerful tool for public good. My experiences have spanned across data science, policy analysis, and urban
-        informatics, each reinforcing my commitment to using data for societal improvement. <br>
-        I look to apply my skills in real-world settings, collaborating with peers, academics, and industry
-        professionals. I'm particularly interested in projects at the intersection of technology, data science, and
-        social justice, aiming to contribute to equitable and effective public policies.<br>
-        I am also fond of sports, sports analytics, trivia, film, comics and graphic design. <br>
+        informatics, each reinforcing my commitment to using data for societal improvement.
     </p>
     <div>
-        <img src="./col_small.jpg" width=100% alt="An image of Divij Sinha." />
+        <!-- <img src="./col_small.jpg" width=100% alt="An image of Divij Sinha." /> -->
     </div>
-    <h3 id="publications">Publications</h3>
-    <ul>
-        <li> <a href="https://www.ilo.org/newdelhi/whatwedo/publications/WCMS_864850/lang--en/index.htm">"Reproducing a
-                Household: Recognising and Assessing Paid and Unpaid Domestic Work in Urban India", ILO, IIHS, 2023 </a>
-        </li>
-        <li> <a href="https://www.ilo.org/newdelhi/whatwedo/publications/WCMS_864848/lang--en/index.htm">"Deficits in
-                Decent Work: Employer Perspectives and Practices on the Quality of Employment in Domestic Work in Urban
-                India", ILO, IIHS, 2023 </a></li>
-        <li> <a href="https://www.ilo.org/newdelhi/whatwedo/publications/WCMS_864849/lang--en/index.htm">"Employer
-                Practices and Perceptions on Paid Domestic Work: Recruitment, Employment Relationships, and Social
-                Protection", ILO, IIHS, 2023 </a></li>
-        <li> <a
-                href="https://www.bath.ac.uk/publications/full-papers-bso-2022/attachments/Predicting_Operative_Temperature_with_Machine_Learning__ML_.pdf">"Predicting
-                Operative Temperature with Machine Learning (ML)", IBPSA-England's Building Simulation and Optimisation
-                Conference 2022, University of Bath </a></li>
-        <li> <a href="https://faruj.sljol.info/articles/10.4038/faruj.v9i2.172"> "Implementing at-scale adaptive thermal
-                comfort controls for mixed mode building using machine learning", Independence and Interdependence of
-                Sustainable Spaces, FARU '22, University of Moratuwa </a></li>
-        <li> <a
-                href="https://static1.squarespace.com/static/60e99ec15c7a40576447b130/t/639afe267563521d51e4a5c9/1671102035919/5.+IIHS+REPORT+14-11-22+NEW+%281%29.pdf">
-                Policy Study on managing the Urban Informal Sector", Non-public report for the Chief Minister's
-                Rajasthan Economic Transformation Advisory Council, Government of Rajasthan </a></li>
-    </ul>
-    <h3 id="projects">Projects</h3>
+    <h2 id="projects">Projects</h2>
     <p> Most of these can be found at my <a href="https://github.com/divij-sinha"> Github </a></p>
-    <ul>
 
-        <li> Created a tool to help scrape jobs <a href="https://github.com/divij-sinha/postgrad-job-search"> [repo]
-            </a> </li>
-        <li> Generated Property Tax fairness assessment reports studying Cook County with Prof. Chris Berry at the
-            Mansueto Institute for Urban Innovation </li>
-        <li> Worked with the Cook County Assessor's Office to generate spatial features used for the assessment model to
-            better predict housing valuations </li>
-        <li> Worked with the Cook County Assessor's Office to create automated property tax explainers for Cook County
-            <a href="https://github.com/divij-sinha/ptax-project-update"> [repo] </a> <a
-                href="https://htmlpreview.github.io/?https://github.com/divij-sinha/ptax-project-update/blob/main/outputs/v1.1/hyde_park_noexe_chicago/ptaxsim_explainer_update.html">
-                [example 1] </a> <a
-                href="https://htmlpreview.github.io/?https://github.com/divij-sinha/ptax-project-update/blob/main/outputs/v1.1/wrightwood_rpmtif_chicago/ptaxsim_explainer_update.html">
-                [example 2] </a> <a
-                href="https://htmlpreview.github.io/?https://github.com/divij-sinha/ptax-project-update/blob/main/outputs/v1.1/cicero/ptaxsim_explainer_update.html">
-                [example 3] </a>
-        </li>
-        <li> Created a web mapping based tool for survey data collection for the Chicago Neighborhood Project </li>
-        <li> Developed a Shiny app (R) dashboard to explore domestic migration patterns across education, reason of
-            movement, gender etc. built from national datasets such as the Census of India, 2011 </li>
-        <li> Created national level estimates of district-to-district in-migration and out-migration to bridge data
-            availability and quality gaps in publicly available datasets to further organisation wide understanding of
-            migration parameters </li>
-        <li> Analyzed publicly available and confidential government datasets for the Rajasthan Chief Minister's office
-            on rethinking urban employment and reframing social security and government benefits in the aftermath of the
-            COVID-19 pandemic <a
-                href="https://static1.squarespace.com/static/60e99ec15c7a40576447b130/t/639afe267563521d51e4a5c9/1671102035919/5.+IIHS+REPORT+14-11-22+NEW+%281%29.pdf">
-                [report] </a></li>
-        <li> Guided the data analysis effort for an International Labour Organisation project studying trends in
-            domestic worker hiring involving a 12,000+ response multi-city survey <a
-                href="https://www.ilo.org/newdelhi/whatwedo/publications/WCMS_864850/lang--en/index.htm">[report 1]</a>
-            <a href="https://www.ilo.org/newdelhi/whatwedo/publications/WCMS_864848/lang--en/index.htm">[report 2]</a>
-            <a href="https://www.ilo.org/newdelhi/whatwedo/publications/WCMS_864849/lang--en/index.htm">[report 3]</a>
-        </li>
-        <li> Investigated the discrepancies in child health indicators across Karnataka through the National Family
-            Health Survey (DHS) </li>
-        <li> Presented the preliminary analysis at a webinar with over 200 attendees, to a panel with experts from
-            UNICEF and NITI-Aayog <a href="https://www.youtube.com/watch?v=e3NdQYPH4oo"> [webinar recording] </a> <a
-                href="https://pib.gov.in/PressReleasePage.aspx?PRID=1759889"> [press release]</a> </li>
-        <li> Predicted future fertility rates, mortality rates, and migration numbers to 2051 for 5-year projection
-            intervals employing Bayesian hierarchical models; then applied outputs to age-sex cohorts to generate
-            population pyramids every 5 years </li>
-        <li> Produced a confidential district level risk analysis report for the Govt of India in March 2020 for the
-            COVID-19 pandemic exploring the spread potential, the impacts and the response capacity </li>
-        <li> Wrote the section on migration for a policy brief for the XV Finance Commission of India on Urban
-            Infrastructure and Resilience
-        <li> Designed, prepared content for, and taught sessions focusing on understanding Indian public data and other
-            data skills in the Data Skill Lab as a faculty member of the Urban Fellows Programme </li>
-        <li> Proposed, created, and deployed an internal system on AWS built on Flask in Python for the admissions
-            process of the Urban Fellows Programme. Handled over 20 internal graders concurrently for over 600
-            applications </li>
-    </ul>
+    <h3>Fun</h3>
 
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="item-header">A series exploring IPL through data</div>
+            <div class="item-body">
+                <a href="https://overlookedpod.substack.com/p/ipl-series-part-1-teams-and-stadiums">
+                    [Part 1: Teams, stadiums and players]
+                </a>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="item-header"><a href="https://overlookedpod.substack.com/p/whose-value-is-it-anyways">Whose
+                    value is it anyways?</a></div>
+            <div class="item-body">My thought on AI and alignment.</div>
+        </div>
+        <div class="grid-item">
+            <div class="item-header">Job Harvester <a href="https://github.com/divij-sinha/postgrad-job-search"> [repo]
+                </a></div>
+            <div class="item-body">Scrape pre-defined job boards at scheduled frequency.</div>
+        </div>
+    </div>
 
-    <h3 id="contact">Where to find me</h3>
+    <h3>Work</h3>
+    <div class="grid-item">
+        <div class="item-header">Summer Data Journalism, Mansueto Institute</div>
+        <div class="item-body">
+            <a href="https://ctastopwatch.miurban-dashboards.org"> CTA StopWatch </a> - A dashboard to create and
+            track daily CTA metrics utilising ChiHackNight's Ghost Buses dataset, leading to
+            <a href="https://www.chicagotribune.com/2024/12/30/cta-bus-service-analysis/">
+                this story by Sarah Freishtat in the Chicago Tribune </a> <a
+                href="https://github.com/mansueto-institute/cta-stop-watch"> [repo]
+            </a>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="item-header">More work from the Mansueto Institute</div>
+        <div class="item-body">
+            <ul>
+                <li> Created a web mapping based tool for survey data collection for the Chicago Neighborhood Project
+                    <a href="https://chicago-neighborhoods.com/"> [survey website] </a>
+                    <a
+                        href="https://www.wbez.org/reset-with-sasha-ann-simons/2024/12/24/uchicago-research-highlights-debates-over-chicago-neighborhood-boundaries">
+                        [WBEZ Reset episode] </a>
+                    <a
+                        href="https://blockclubchicago.org/2024/12/04/chicago-neighborhoods-mapped-by-residents-heres-where-locals-think-official-boundaries-should-be/">
+                        [Block Club Chicago] </a>
+                </li>
+                <li> Generated Property Tax fairness assessment reports studying Cook County with Prof. Chris Berry at
+                    the Mansueto Institute for Urban Innovation </li>
+                <li> Worked with the Cook County Assessor's Office to generate spatial features used for the assessment
+                    model to better predict housing valuations </li>
+                <li> Worked with the Cook County Assessor's Office to create automated property tax explainers for Cook
+                    County
+                    <a href="https://github.com/divij-sinha/ptax-project-update"> [repo] </a> <a
+                        href="https://htmlpreview.github.io/?https://github.com/divij-sinha/ptax-project-update/blob/main/outputs/v1.1/hyde_park_noexe_chicago/ptaxsim_explainer_update.html">
+                        [example 1] </a> <a
+                        href="https://htmlpreview.github.io/?https://github.com/divij-sinha/ptax-project-update/blob/main/outputs/v1.1/wrightwood_rpmtif_chicago/ptaxsim_explainer_update.html">
+                        [example 2] </a> <a
+                        href="https://htmlpreview.github.io/?https://github.com/divij-sinha/ptax-project-update/blob/main/outputs/v1.1/cicero/ptaxsim_explainer_update.html">
+                        [example 3] </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="item-header">A series of studies on domestic labour conditions in India</div>
+        <div class="item-body">
+            <ul>
+                <li> <a href="https://www.ilo.org/newdelhi/whatwedo/publications/WCMS_864850/lang--en/index.htm">
+                        "Reproducing a Household: Recognising and Assessing Paid and Unpaid Domestic Work in
+                        Urban India", ILO, IIHS, 2023 </a>
+                </li>
+                <li> <a href="https://www.ilo.org/newdelhi/whatwedo/publications/WCMS_864848/lang--en/index.htm">
+                        "Deficits in Decent Work: Employer Perspectives and Practices on the Quality of
+                        Employment in Domestic Work in Urban India", ILO, IIHS, 2023 </a></li>
+                <li> <a href="https://www.ilo.org/newdelhi/whatwedo/publications/WCMS_864849/lang--en/index.htm">
+                        "Employer Practices and Perceptions on Paid Domestic Work: Recruitment, Employment
+                        Relationships, and Social Protection", ILO, IIHS, 2023 </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="item-header">A series of papers on thermal comfort, and regulation of building
+            temperatures</div>
+        <div class="item-body">
+            <ul>
+                <li> <a
+                        href="https://www.bath.ac.uk/publications/full-papers-bso-2022/attachments/Predicting_Operative_Temperature_with_Machine_Learning__ML_.pdf">
+                        "Predicting Operative Temperature with Machine Learning (ML)", IBPSA-England's
+                        Building Simulation and Optimisation Conference 2022, University of Bath </a></li>
+                <li> <a href="https://faruj.sljol.info/articles/10.4038/faruj.v9i2.172">
+                        "Implementing at-scale adaptive thermal comfort controls for mixed mode building using machine
+                        learning", Independence and Interdependence of Sustainable Spaces, FARU '22, University of
+                        Moratuwa </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="item-header">More work from IIHS</div>
+        <div class="item-body">
+            <ul>
+                <li> <a
+                        href="https://static1.squarespace.com/static/60e99ec15c7a40576447b130/t/639afe267563521d51e4a5c9/1671102035919/5.+IIHS+REPORT+14-11-22+NEW+%281%29.pdf">
+                        Policy Study on managing the Urban Informal Sector", Non-public report for the Chief Minister's
+                        Rajasthan Economic Transformation Advisory Council, Government of Rajasthan </a>
+                </li>
+                <li> An analysis of discrepancies in child health indicators across Karnataka <a
+                        href="https://www.youtube.com/watch?v=e3NdQYPH4oo"> [webinar recording]
+                    </a> <a href="https://pib.gov.in/PressReleasePage.aspx?PRID=1759889">
+                        [press release]</a> </li>
+                <li> Created national level estimates of district-to-district in-migration and out-migration to bridge
+                    data availability and quality gaps in publicly available datasets to further organisation wide
+                    understanding of migration parameters </li>
+                <li> Predicted future fertility rates, mortality rates, and migration numbers to 2051 for 5-year
+                    projection intervals employing Bayesian hierarchical models; then applied outputs to age-sex cohorts
+                    to generate population pyramids every 5 years </li>
+                <li> Produced a confidential district level risk analysis report for the Govt of India in March 2020 for
+                    the COVID-19 pandemic exploring the spread potential, the impacts and the response capacity </li>
+                <li> Wrote the section on migration for a policy brief for the XV Finance Commission of India on Urban
+                    Infrastructure and Resilience </li>
+                <li>Developed a Shiny app (R) dashboard to explore domestic migration patterns across education, reason
+                    of movement, gender etc. built from national datasets such as the Census of India, 2011
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="grid-item">
+        <div class="item-header">Teaching</div>
+        <div class="item-body">
+            <ul>
+                <li>
+                    Currently teaching PA 470, ML and AI for Public Policy at the University of Illinois, Chicago.
+                </li>
+                <li> Designed, prepared content for, and taught sessions focusing on understanding Indian public data
+                    and other data skills in the Data Skill Lab as a faculty member of the Urban Fellows Programme at
+                    the Indian Institude for Human Settlements </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <h2 id="contact">Contact</h2>
     <p>
-        Feel free to reach out if you want to chat about anything!
-        Especially if you are from an underrepreseted minority from India/South Asia, I would love to help out in way I
-        can - from help with research to writing grad school applications, and preparing for CAT/GRE/BITSAT etc.
+        Feel free to reach out if you want to chat about anything! Especially if you are from an underrepreseted
+        minority from India/South Asia, I would love to help out in way I can - from help with research to writing grad
+        school applications, and preparing for CAT/GRE/BITSAT etc.
     </p>
     <p>
         <a href="#">Mail - divijs at uchicago dot edu</a><br>
@@ -242,7 +349,7 @@
         <a href="https://github.com/divij-sinha" target="new">Github</a><br>
         <!-- <a href="https://behance.net/maxaw" target="new">Behance</a><br> -->
         <a href="https://www.linkedin.com/in/divij-sinha" target="new">LinkedIn</a><br>
-        <a href="https://overlookedpod.substack.com" target="new">Substack - Coming Soon</a><br>
+        <a href="https://overlookedpod.substack.com" target="new">Substack</a><br>
 </body>
 
 </html>
