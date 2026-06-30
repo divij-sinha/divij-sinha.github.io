@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon Xanthic &mdash; Divij Sinha</title>
+    <meta
+      name="description"
+      content="A C++ game built from scratch with friends in high school."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://divij-sinha.github.io/xanthic.html" />
+    <script src="https://js-dos.com/6.22/current/js-dos.js"></script>
+    <style>
+      /* Figtree by Erik Kennedy, licensed under OFL: static/Figtree-OFL.txt */
+      @font-face {
+        font-family: "Figtree";
+        src: url("Figtree-VariableFont_wght.woff2") format("woff2-variations");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Boldonse by Issa Youssef, licensed under OFL: static/Boldonse-OFL.txt */
+      @font-face {
+        font-family: "Boldonse";
+        src: url("Boldonse-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0 auto;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        background: #eeeeee;
+        color: #333333;
+        font-family: "Figtree", sans-serif;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        max-width: 680px;
+        width: 90%;
+      }
+
+      h1 {
+        font-size: 2rem;
+        font-family: "Boldonse", system-ui;
+        font-weight: 400;
+      }
+
+      h2 {
+        scroll-margin-top: 6.5rem;
+        font-family: "Boldonse", system-ui;
+        font-weight: 400;
+        font-size: 1.3rem;
+      }
+
+      a {
+        border-bottom: 0.15rem solid #333333;
+        color: #333333;
+        text-decoration: none;
+      }
+
+      a:hover {
+        border-bottom: 0.15rem solid #eeeeee;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        display: flex;
+        background: #eeeeee;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Boldonse", system-ui;
+      }
+
+      .navul {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .nava {
+        display: block;
+        text-align: center;
+        padding: 0.5rem 0.5rem;
+        font-size: 1rem;
+      }
+
+      .hiddenlink {
+        border-bottom: 0.15rem solid #eeeeee;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        margin: 0.5rem 0;
+      }
+
+      .game {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        background: #000000;
+        border-radius: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      @media screen and (max-width: 600px) {
+        body {
+          font-size: 1rem;
+        }
+
+        h1 {
+          font-weight: 400;
+        }
+
+        a {
+          border-bottom: 0.1rem solid #333333;
+        }
+
+        a:hover {
+          border-bottom: 0.1rem solid #eeeeee;
+        }
+
+        .nav {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nava {
+          padding: 0.25rem 0.25rem;
+        }
+
+        .navul {
+          flex-direction: row;
+          align-items: flex-start;
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .navli {
+          font-size: 0.7rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <a class="hiddenlink" href="https://divij-sinha.github.io">
+        <h1>Divij Sinha</h1>
+      </a>
+
+      <ul class="navul">
+        <li class="navli"><a class="nava" href="index.html"> Home </a></li>
+        <li class="navli">
+          <a class="nava" href="index.html#projects"> Personal </a>
+        </li>
+      </ul>
+    </div>
+
+    <h2 style="text-align: center">Pokemon Xanthic</h2>
+    <div style="text-align: center">
+      <img
+        src="https://img.pokemondb.net/sprites/ruby-sapphire/normal/charizard.png"
+        alt="Charizard"
+        style="width: 8rem; height: auto; image-rendering: pixelated"
+      />
+    </div>
+    <p>
+      A C++ game built from scratch with Shivesh Sood, Venkat Krishnamohan, and
+      Vinayak Gowda. Playable in the browser below.
+    </p>
+
+    <canvas id="dos-canvas" class="game"></canvas>
+    <script>
+      Dos(document.getElementById("dos-canvas"), {
+        wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
+      }).ready((fs, main) => {
+        fs.extract("static/finale.zip").then(() => {
+          main(["-c", "FINALE.EXE"]);
+        });
+      });
+    </script>
+
+    <div style="height: 4rem"></div>
+  </body>
+</html>

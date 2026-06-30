@@ -110,10 +110,45 @@
         font-size: 1rem;
       }
 
+      .nav-sprite {
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 1.5rem;
+        border-bottom: none;
+      }
+
+      .nav-sprite img {
+        width: 3rem;
+        height: auto;
+        image-rendering: pixelated;
+      }
+
+      .nav-sprite:hover {
+        border-bottom: none;
+      }
+
+      @media screen and (max-width: 900px) {
+        .nav-sprite {
+          display: none;
+        }
+      }
+
       .grid-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
         gap: 1rem;
+      }
+
+      .grid-half {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media screen and (max-width: 600px) {
+        .grid-half {
+          grid-template-columns: 1fr;
+        }
       }
 
       .grid-item {
@@ -213,6 +248,13 @@
         </li>
         <li class="navli"><a class="nava" href="#projects"> Personal</a></li>
       </ul>
+
+      <a class="nav-sprite" href="xanthic.html">
+        <img
+          src="https://img.pokemondb.net/sprites/ruby-sapphire/normal/charizard.png"
+          alt="Pokemon Xanthic"
+        />
+      </a>
     </div>
 
     <h2 id="about">About</h2>
@@ -265,37 +307,12 @@
     </h3>
     <div class="grid-item">
       <div class="item-header">
-        Mansueto Institute &mdash; Local Data Journalism Fellowship
-      </div>
-      <div class="item-body">
-        Project managed the Local Data Journalism Fellowship (2024&ndash;2026),
-        leading teams of research assistants on urban-focused data journalism
-        projects.
-      </div>
-    </div>
-    <div class="grid-item">
-      <div class="item-header">
         Metric Geometry and Gerrymandering Lab &mdash; Election Survey Analysis
       </div>
       <div class="item-body">
         Metrics and analysis for large-scale US primary election surveys,
         piloting new voting methods and candidate slates with Prof. Moon Duchin
         at Cornell University (Summer 2024).
-      </div>
-    </div>
-    <div class="grid-item">
-      <div class="item-header">Mansueto Institute &mdash; CTA StopWatch</div>
-      <div class="item-body">
-        Dashboard tracking daily CTA bus metrics from ChiHackNight's Ghost Buses
-        dataset.
-        <a href="https://ctastopwatch.miurban-dashboards.org">[site]</a>
-        <a href="https://github.com/mansueto-institute/cta-stop-watch"
-          >[repo]</a
-        >
-        <a
-          href="https://www.chicagotribune.com/2024/12/30/cta-bus-service-analysis/"
-          >[Tribune story]</a
-        >
       </div>
     </div>
     <div class="grid-item">
@@ -338,6 +355,10 @@
         boundaries.
         <a href="https://chicago-neighborhoods.com/">[survey website]</a>
         <a
+          href="https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.COSIT.2024.26"
+          >[COSIT 2024 paper]</a
+        >
+        <a
           href="https://www.wbez.org/reset-with-sasha-ann-simons/2024/12/24/uchicago-research-highlights-debates-over-chicago-neighborhood-boundaries"
           >[WBEZ Reset]</a
         >
@@ -375,6 +396,71 @@
         National district-to-district migration estimates; population
         projections to 2051 using Bayesian hierarchical models; confidential
         COVID-19 district risk analysis for the Government of India (2020).
+      </div>
+    </div>
+
+    <h3>Local Data Journalism</h3>
+    <p>
+      Project managed the Mansueto Institute's Local Data Journalism Fellowship
+      (2024&ndash;2026), leading teams of research assistants on urban-focused
+      data journalism collaborations with Chicago newsrooms.
+    </p>
+    <div class="grid-container grid-half">
+      <div class="grid-item">
+        <div class="item-header">Hospital Price Transparency</div>
+        <div class="item-body">
+          Extracted and standardised hospital pricing data across the Chicago
+          metro area (208M+ rows) with Profs. Christopher Berry and Joshua
+          Gottlieb, supporting analysis of price variation across hospitals and
+          insurers.
+          <a
+            href="https://chicago.suntimes.com/the-watchdogs/2026/06/19/hospital-billing-transparency-federal-law-failed-consumer-health7"
+            >[Sun-Times story]</a
+          >
+          <a href="https://ctastopwatch.miurban-dashboards.org">[site]</a>
+        </div>
+      </div>
+      <div class="grid-item">
+        <div class="item-header">Who Owns Chicago?</div>
+        <div class="item-body">
+          Built a property ownership tool that uncovers networks of LLC
+          landlords behind the city's rental housing, matching parcels and
+          entities by common addresses and names.
+          <a
+            href="https://chicago.suntimes.com/the-watchdogs/2025/09/05/chicago-landlords-renters-property-management-llc"
+            >[Sun-Times story]</a
+          >
+          <a href="https://ctastopwatch.miurban-dashboards.org">[site]</a>
+        </div>
+      </div>
+      <div class="grid-item">
+        <div class="item-header">CTA StopWatch</div>
+        <div class="item-body">
+          Dashboard tracking daily CTA bus metrics from ChiHackNight's Ghost
+          Buses dataset.
+          <a
+            href="https://www.chicagotribune.com/2024/12/30/cta-bus-service-analysis/"
+            >[Tribune story]</a
+          >
+          <a href="https://ctastopwatch.miurban-dashboards.org">[site]</a>
+          <a href="https://github.com/mansueto-institute/cta-stop-watch"
+            >[repo]</a
+          >
+        </div>
+      </div>
+      <div class="grid-item">
+        <div class="item-header">ARPA Audit</div>
+        <div class="item-body">
+          TODO
+          <a href="https://arpaudit.miurban-dashboards.org">[site]</a>
+        </div>
+      </div>
+      <div class="grid-item">
+        <div class="item-header">Property Tax Explainer</div>
+        <div class="item-body">
+          TODO
+          <a href="https://ptaxexplainer.miurban-dashboards.org">[site]</a>
+        </div>
       </div>
     </div>
 
@@ -531,6 +617,14 @@
         <div class="item-body">
           RNN-based web app to generate Indian place names, with customisable
           state origin and start strings.
+        </div>
+      </div>
+      <div class="grid-item">
+        <div class="item-header">
+          <a href="xanthic.html">Pokemon Xanthic</a>
+        </div>
+        <div class="item-body">
+          A C++ game built from scratch with friends in high school.
         </div>
       </div>
     </div>
