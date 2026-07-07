@@ -30,6 +30,7 @@ DROP = {"script", "style", "form", "button", "iframe", "svg", "input", "source",
 DROP_CLASS_WORDS = ("subscri", "share", "button", "tweet")
 
 _OWN_POST = re.compile(r"https?://overlookedpod\.substack\.com/p/([\w-]+)/?$")
+_URL = re.compile(r"(https?://[^\s<]+)")
 
 
 class _Sanitizer(HTMLParser):
@@ -38,6 +39,10 @@ class _Sanitizer(HTMLParser):
         self.out = []
         self.skip = 0
         self.own_slugs = own_slugs
+        self.divs = []  # per open non-skipped div: True if a kept .footnote div
+        self.foot = 0  # inside a footnote block
+        self.in_a = False
+        self.sup = False  # current <a> is sup-wrapped
 
     def _dropped(self, tag, attrs):
         cls = dict(attrs).get("class") or ""
@@ -51,6 +56,8 @@ class _Sanitizer(HTMLParser):
                 m = _OWN_POST.match(v)
                 if m and m.group(1) in self.own_slugs:
                     v = "/posts/" + m.group(1)
+                kept.append((k, v))
+            elif tag == "a" and k == "id":
                 kept.append((k, v))
             elif tag == "img" and k in ("src", "alt", "width", "height"):
                 kept.append((k, v))
@@ -68,21 +75,50 @@ class _Sanitizer(HTMLParser):
             self.skip += 1
         elif self._dropped(tag, attrs):
             self.skip = 1
+        elif tag == "div":
+            classes = (dict(attrs).get("class") or "").split()
+            if "footnote" in classes:
+                self.out.append('<div class="footnote">')
+                self.foot += 1
+                self.divs.append(True)
+            else:
+                self.divs.append(False)
+        elif tag == "a":
+            classes = (dict(attrs).get("class") or "").split()
+            if "footnote-anchor" in classes:
+                self.out.append("<sup>")
+                self.sup = True
+            self.in_a = True
+            self._emit(tag, attrs)
         elif tag in ALLOWED:
             self._emit(tag, attrs)
-        # any other tag (div, span, section, picture, ...): unwrap silently
+        # any other tag (span, section, picture, ...): unwrap silently
 
     def handle_endtag(self, tag):
         if tag in VOID:
             return
         if self.skip:
             self.skip -= 1
+        elif tag == "div":
+            if self.divs and self.divs.pop():
+                self.out.append("</div>")
+                self.foot -= 1
+        elif tag == "a":
+            self.out.append("</a>")
+            if self.sup:
+                self.out.append("</sup>")
+                self.sup = False
+            self.in_a = False
         elif tag in ALLOWED:
             self.out.append(f"</{tag}>")
 
     def handle_data(self, data):
-        if not self.skip:
-            self.out.append(html.escape(data))
+        if self.skip:
+            return
+        text = html.escape(data)
+        if self.foot and not self.in_a:
+            text = _URL.sub(r'<a href="\1">\1</a>', text)
+        self.out.append(text)
 
 
 def sanitize(body_html, own_slugs):
@@ -168,6 +204,61 @@ POST_PAGE = """<!doctype html>
         font-family: "Boldonse", system-ui;
         font-size: 0.9rem;
       }}
+      .footnote {{
+        display: flex;
+        gap: 0.75rem;
+        color: #555555;
+        font-size: 0.9rem;
+        overflow-wrap: anywhere;
+      }}
+      .footnote > a {{
+        flex: none;
+        border-bottom: none;
+      }}
+      .footnote:first-of-type {{
+        border-top: 0.15rem solid #a0a0a0;
+        margin-top: 3rem;
+        padding-top: 1rem;
+      }}
+      .footnote p {{
+        margin: 0 0 0.5rem;
+      }}
+      .footer {{
+        border-top: 0.15rem solid #a0a0a0;
+        margin-top: 3rem;
+        padding-top: 1rem;
+      }}
+      .toc {{
+        position: fixed;
+        top: 5rem;
+        left: calc(50% + 22rem);
+        width: 14rem;
+        font-size: 0.85rem;
+      }}
+      .toc a {{
+        display: block;
+        padding: 0.15rem 0;
+        border-bottom: none;
+        color: #555555;
+      }}
+      .toc a:hover {{
+        color: #333333;
+      }}
+      .toc a.h3 {{
+        padding-left: 1rem;
+      }}
+      .toc a.active {{
+        color: #333333;
+        font-weight: 600;
+      }}
+      @media screen and (max-width: 1200px) {{
+        .toc {{
+          display: none;
+        }}
+      }}
+      html {{
+        scroll-behavior: smooth;
+      }}
     </style>
   </head>
 
@@ -175,7 +266,11 @@ POST_PAGE = """<!doctype html>
     <p class="home"><a href="/">Divij Sinha</a></p>
     <h1>{title}</h1>
     <p class="meta">{long_date} &middot; <a href="{canonical_url}">on substack</a></p>
-    {body}
+    {toc}{body}
+    <p class="meta footer">
+      <a href="/">home</a> &middot;
+      <a href="{canonical_url}">read on substack</a>
+    </p>
   </body>
 </html>
 """
@@ -186,6 +281,66 @@ ITEM = """      <div class="grid-item">
         </div>
         <div class="item-body">{short_date} &mdash; {description}</div>
       </div>"""
+
+
+TOC_NAV = """<nav class="toc" aria-label="Contents">
+{links}
+    </nav>
+    <script>
+      const links = document.querySelectorAll(".toc a");
+      const observer = new IntersectionObserver(
+        (entries) => {{
+          for (const entry of entries) {{
+            if (entry.isIntersecting) {{
+              for (const link of links) {{
+                link.classList.toggle(
+                  "active",
+                  link.hash === "#" + entry.target.id
+                );
+              }}
+            }}
+          }}
+        }},
+        {{ rootMargin: "0px 0px -75% 0px" }}
+      );
+      for (const link of links) {{
+        observer.observe(document.getElementById(link.hash.slice(1)));
+      }}
+    </script>"""
+
+_HEADING = re.compile(r"<(h[23])>(.*?)</\1>", re.S)
+_TAG = re.compile(r"<[^>]+>")
+
+
+def toc_and_ids(body):
+    """Add ids to h2/h3 headings; return (body, [(tag, id, text), ...])."""
+    toc, used = [], set()
+
+    def repl(m):
+        tag, inner = m.group(1), m.group(2)
+        text = _TAG.sub("", inner)
+        hid = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-") or "section"
+        n, unique = 2, hid
+        while unique in used:
+            unique = f"{hid}-{n}"
+            n += 1
+        used.add(unique)
+        toc.append((tag, unique, text))
+        return f'<{tag} id="{unique}">{inner}</{tag}>'
+
+    return _HEADING.sub(repl, body), toc
+
+
+def render_toc(toc):
+    if not toc:
+        return ""
+    links = "\n".join(
+        f'      <a class="h3" href="#{hid}">{text}</a>'
+        if tag == "h3"
+        else f'      <a href="#{hid}">{text}</a>'
+        for tag, hid, text in toc
+    )
+    return TOC_NAV.format(links=links)
 
 
 def slug_of(post):
@@ -202,11 +357,13 @@ def _dt(post):
 
 def render_post(post, body):
     d = _dt(post)
+    body, toc = toc_and_ids(body)
     return POST_PAGE.format(
         title=_clean(post["title"]),
         description=_clean(post.get("description")),
         canonical_url=post["canonical_url"],
         long_date=f"{d.day} {d.strftime('%B %Y')}",
+        toc=render_toc(toc),
         body=body,
     )
 
