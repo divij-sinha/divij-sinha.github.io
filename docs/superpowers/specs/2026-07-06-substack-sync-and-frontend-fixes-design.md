@@ -13,7 +13,9 @@ External advice suggested a Node pipeline (turndown + sharp + markdown + SSG). E
 
 ### Components
 
-**1. `scripts/sync_substack.py`** — Python 3, stdlib only (urllib, json, html.parser, gzip, pathlib). No dependencies, no package manager step in CI.
+**1. `scripts/sync_substack.py`** — Python 3, stdlib only (urllib, json, html.parser, pathlib). No dependencies, no package manager step in CI.
+
+Guiding principle throughout: minimalism in code — as few moving parts as possible, nothing speculative. No enforcement machinery for the size budgets; small pages are an outcome of generating only what's necessary, checked by eye.
 
 Behavior:
 - Fetch `https://overlookedpod.substack.com/api/v1/posts?limit=50` (paginate with `offset` if 50 returned). Keep posts where `is_published` is true and `audience == "everyone"`.
@@ -26,7 +28,6 @@ Behavior:
 - **Write `posts/<slug>.html`** from a template embedded in the script: same fonts (`../Figtree...`, `../Boldonse...` relative paths), same color scheme and minimal CSS as index, minimal nav (site name → home), title, date, sanitized body, and a footer link "Read on Substack →" to `canonical_url`. Target ~2–4kb gzipped for text posts.
 - **Update `index.html`**: replace content between `<!-- substack:start -->` and `<!-- substack:end -->` markers (added once by hand inside the Personal section's grid) with one `grid-item` per post: title linking to `posts/<slug>`, date, one-line `description` from the API. Newest first.
 - **Idempotent**: regeneration from unchanged API data produces byte-identical files; the Action then has nothing to commit.
-- **Budget guard**: after writing, gzip `index.html` in memory; if > 6,144 bytes, exit non-zero with a clear message. CI fails visibly rather than silently bloating the page.
 
 **2. `.github/workflows/substack-sync.yml`**
 - Triggers: `schedule: cron '0 6 * * *'` (daily), `workflow_dispatch`.
@@ -36,7 +37,7 @@ Behavior:
 
 ### index.html changes for the sync
 - The two hand-written Substack entries in Personal ("A series exploring IPL through data", "Whose value is it anyways?") are removed; the generated list replaces them between the markers.
-- Estimated net index growth: ≈ +350 gzipped bytes (5 entries added, 2 removed). If the 6kb guard ever trips, first remedy is dropping description lines from the generated entries (titles + dates only).
+- Estimated net index growth: ≈ +350 gzipped bytes (5 entries added, 2 removed).
 
 ### Error handling
 - API unreachable / non-200 / malformed JSON: script exits non-zero without touching files; CI shows red run, site unaffected.
