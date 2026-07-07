@@ -1,0 +1,86 @@
+/* Figtree by Erik Kennedy, licensed under OFL: static/Figtree-OFL.txt */
+@font-face {
+  font-family: "Figtree";
+  src: url("/Figtree-VariableFont_wght.woff2") format("woff2-variations");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Boldonse by Issa Youssef, licensed under OFL: static/Boldonse-OFL.txt */
+@font-face {
+  font-family: "Boldonse";
+  src: url("/Boldonse-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  background: #eeeeee;
+  color: #333333;
+  font-family: "Figtree", sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  max-width: 768px;
+  width: 90%;
+}
+
+a {
+  border-bottom: 0.15rem solid #bbbbbb;
+  color: #333333;
+  text-decoration: none;
+}
+
+a:hover {
+  border-bottom-color: transparent;
+}
+
+::selection {
+  background: #ffc53a;
+}
+
+.meta {
+  color: #555555;
+  font-size: 0.9rem;
+}
+
+.home {
+  font-family: "Boldonse", system-ui;
+  font-size: 0.9rem;
+}
+
+.home a {
+  border-bottom: none;
+}
+
+.colophon {
+  border: none;
+  height: 0.2rem;
+  width: 6rem;
+  margin: 4rem 0 2rem;
+  background: linear-gradient(
+    to right,
+    #ffc53a 0 25%,
+    #207890 25% 50%,
+    #d86020 50% 75%,
+    #687838 75% 100%
+  );
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 1rem;
+  }
+
+  a {
+    border-bottom: 0.1rem solid #bbbbbb;
+  }
+}

@@ -11,106 +11,13 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href="https://divij-sinha.github.io/xanthic" />
     <script src="https://js-dos.com/6.22/current/js-dos.js"></script>
+    <link rel="stylesheet" href="/style.css" />
     <style>
-      /* Figtree by Erik Kennedy, licensed under OFL: static/Figtree-OFL.txt */
-      @font-face {
-        font-family: "Figtree";
-        src: url("Figtree-VariableFont_wght.woff2") format("woff2-variations");
-        font-weight: 300 900;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      /* Boldonse by Issa Youssef, licensed under OFL: static/Boldonse-OFL.txt */
-      @font-face {
-        font-family: "Boldonse";
-        src: url("Boldonse-Regular.woff2") format("woff2");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0 auto;
-        padding: 0 1rem;
-        box-sizing: border-box;
-        background: #eeeeee;
-        color: #333333;
-        font-family: "Figtree", sans-serif;
-        font-size: 1.15rem;
-        line-height: 1.6;
-        max-width: 768px;
-        width: 90%;
-      }
-
       h1 {
-        font-size: 2rem;
         font-family: "Boldonse", system-ui;
         font-weight: 400;
-      }
-
-      h2 {
-        scroll-margin-top: 6.5rem;
-        font-family: "Boldonse", system-ui;
-        font-weight: 400;
-        font-size: 1.3rem;
-      }
-
-      a {
-        border-bottom: 0.15rem solid #bbbbbb;
-        color: #333333;
-        text-decoration: none;
-      }
-
-      a:hover {
-        border-bottom: 0.15rem solid #687838;
-      }
-
-      ::selection {
-        background: #dbc55f;
-      }
-
-      .nav {
-        position: sticky;
-        top: 0;
-        display: flex;
-        background: #eeeeee;
-        justify-content: space-between;
-        align-items: center;
-        font-family: "Boldonse", system-ui;
-      }
-
-      .navul {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-end;
-      }
-
-      .nava {
-        display: block;
-        text-align: center;
-        padding: 0.5rem 0.5rem;
-        font-size: 1rem;
-      }
-
-      .hiddenlink,
-      .hiddenlink:hover {
-        border-bottom-color: #eeeeee;
-      }
-
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      li {
-        margin: 0.5rem 0;
+        font-size: 1.5rem;
+        line-height: 1.5;
       }
 
       .game {
@@ -121,61 +28,12 @@
         margin: 1rem 0;
       }
 
-      @media screen and (max-width: 600px) {
-        body {
-          font-size: 1rem;
-        }
-
-        h1 {
-          font-weight: 400;
-        }
-
-        a {
-          border-bottom: 0.1rem solid #bbbbbb;
-        }
-
-        a:hover {
-          border-bottom: 0.1rem solid #687838;
-        }
-
-        .nav {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .nava {
-          padding: 0.25rem 0.25rem;
-        }
-
-        .navul {
-          flex-direction: row;
-          align-items: flex-start;
-          width: 100%;
-          justify-content: space-between;
-        }
-
-        .navli {
-          font-size: 0.7rem;
-        }
-      }
     </style>
   </head>
 
   <body>
-    <div class="nav">
-      <a class="hiddenlink" href="https://divij-sinha.github.io">
-        <h1>Divij Sinha</h1>
-      </a>
-
-      <ul class="navul">
-        <li class="navli"><a class="nava" href="index.html"> Home </a></li>
-        <li class="navli">
-          <a class="nava" href="index.html#projects"> Personal </a>
-        </li>
-      </ul>
-    </div>
-
-    <h2 style="text-align: center">Pokemon Xanthic</h2>
+    <p class="home"><a href="/">Divij Sinha</a></p>
+    <h1>Pokemon Xanthic</h1>
     <div style="text-align: center">
       <img
         src="static/charizard.png"
@@ -199,6 +57,6 @@
       });
     </script>
 
-    <div style="height: 4rem"></div>
+    <hr class="colophon" />
   </body>
 </html>

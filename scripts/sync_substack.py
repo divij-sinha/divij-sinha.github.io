@@ -139,31 +139,8 @@ POST_PAGE = """<!doctype html>
     <link rel="canonical" href="{canonical_url}" />
     <link rel="preload" href="/Figtree-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/Boldonse-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/style.css" />
     <style>
-      @font-face {{
-        font-family: "Figtree";
-        src: url("/Figtree-VariableFont_wght.woff2") format("woff2-variations");
-        font-weight: 300 900;
-        font-display: swap;
-      }}
-      @font-face {{
-        font-family: "Boldonse";
-        src: url("/Boldonse-Regular.woff2") format("woff2");
-        font-weight: 400;
-        font-display: swap;
-      }}
-      body {{
-        margin: 0 auto;
-        padding: 1rem 1rem 4rem;
-        box-sizing: border-box;
-        background: #eeeeee;
-        color: #333333;
-        font-family: "Figtree", sans-serif;
-        font-size: 1.15rem;
-        line-height: 1.6;
-        max-width: 768px;
-        width: 90%;
-      }}
       h1 {{
         font-family: "Boldonse", system-ui;
         font-weight: 400;
@@ -184,17 +161,6 @@ POST_PAGE = """<!doctype html>
       h4, h5, h6 {{
         font-size: 1rem;
       }}
-      a {{
-        border-bottom: 0.15rem solid #bbbbbb;
-        color: #333333;
-        text-decoration: none;
-      }}
-      a:hover {{
-        border-bottom-color: #687838;
-      }}
-      ::selection {{
-        background: #dbc55f;
-      }}
       img {{
         max-width: 100%;
         height: auto;
@@ -207,14 +173,6 @@ POST_PAGE = """<!doctype html>
       }}
       pre {{
         overflow-x: auto;
-      }}
-      .meta {{
-        color: #555555;
-        font-size: 0.9rem;
-      }}
-      .home {{
-        font-family: "Boldonse", system-ui;
-        font-size: 0.9rem;
       }}
       .footnote {{
         display: flex;
@@ -236,7 +194,7 @@ POST_PAGE = """<!doctype html>
         margin: 0 0 0.5rem;
       }}
       .footer {{
-        border-top: 0.15rem solid #a0a0a0;
+        border-top: 0.15rem solid #D86020;
         margin-top: 3rem;
         padding-top: 1rem;
       }}
@@ -260,16 +218,13 @@ POST_PAGE = """<!doctype html>
         padding-left: 1rem;
       }}
       .toc a.active {{
-        color: #333333;
+        color: #d86020;
         font-weight: 600;
       }}
       @media screen and (max-width: 1260px) {{
         .toc {{
           display: none;
         }}
-      }}
-      html {{
-        scroll-behavior: smooth;
       }}
     </style>
   </head>
@@ -283,6 +238,7 @@ POST_PAGE = """<!doctype html>
       <a href="/">home</a> &middot;
       <a href="{canonical_url}">read on substack</a>
     </p>
+    <hr class="colophon" />
   </body>
 </html>
 """
