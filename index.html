@@ -74,6 +74,21 @@
         font-size: 1.3rem;
       }
 
+      h2::before {
+        content: "";
+        display: block;
+        width: 2rem;
+        height: 0.2rem;
+        margin-bottom: 0.75rem;
+        background: #800000;
+      }
+
+      .lede {
+        font-family: "Boldonse", system-ui;
+        font-size: 1.25rem;
+        line-height: 2;
+      }
+
       h3 {
         font-family: "Boldonse", system-ui;
         font-weight: 400;
@@ -97,7 +112,7 @@
       }
 
       a:hover {
-        border-bottom: 0.15rem solid #eeeeee;
+        border-bottom: 0.15rem solid #800000;
       }
 
       .nav {
@@ -185,6 +200,13 @@
         font-size: 0.9rem;
       }
 
+      .org {
+        font-family: "Boldonse", system-ui;
+        font-weight: 400;
+        font-size: 0.85rem;
+        margin: 2rem 0 0.75rem;
+      }
+
       .about-photo {
         float: right;
         margin: 0 0 1rem 1.5rem;
@@ -219,7 +241,7 @@
         }
 
         a:hover {
-          border-bottom: 0.1rem solid #eeeeee;
+          border-bottom: 0.1rem solid #800000;
         }
 
         .nav {
@@ -275,6 +297,9 @@
     </div>
 
     <h2 id="about">About</h2>
+    <p class="lede">
+      I study elections in India, and build public data tools for Chicago.
+    </p>
     <img
       src="col.webp"
       alt="Divij Sinha"
@@ -286,9 +311,8 @@
       I'm a PhD student in
       <a href="https://politicaleconomy.uchicago.edu/"
         >Political Economy at the University of Chicago</a
-      >, and a data scientist and policy analyst. I'm broadly interested in
-      studying India and the Global South, and am currently working on elections
-      in India.
+      >, and a data scientist and policy analyst, broadly interested in India
+      and the Global South.
     </p>
     <p>
       I am also a Research Engineer at the
@@ -322,7 +346,7 @@
         >[github]</a
       >
     </h3>
-    <p class="meta">Metric Geometry and Gerrymandering Lab</p>
+    <p class="org">Metric Geometry and Gerrymandering Lab</p>
     <div class="grid-item">
       <div class="item-header">Election Survey Analysis</div>
       <div class="item-body">
@@ -331,7 +355,7 @@
         at Cornell University (Summer 2024).
       </div>
     </div>
-    <p class="meta">Mansueto Institute for Urban Innovation</p>
+    <p class="org">Mansueto Institute for Urban Innovation</p>
     <div class="grid-item">
       <div class="item-header">Cook County Property Tax</div>
       <div class="item-body">
@@ -359,7 +383,7 @@
         to study localised segregation patterns.
       </div>
     </div>
-    <p class="meta">Center for Spatial Data Science</p>
+    <p class="org">Center for Spatial Data Science</p>
     <div class="grid-item">
       <div class="item-header">Chicago Neighborhood Project</div>
       <div class="item-body">
@@ -380,7 +404,7 @@
         >
       </div>
     </div>
-    <p class="meta">Indian Institute for Human Settlements</p>
+    <p class="org">Indian Institute for Human Settlements</p>
     <div class="grid-item">
       <div class="item-header">Urban Informal Sector Policy Study</div>
       <div class="item-body">

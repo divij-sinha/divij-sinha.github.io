@@ -181,7 +181,7 @@ POST_PAGE = """<!doctype html>
         text-decoration: none;
       }}
       a:hover {{
-        border-bottom-color: #eeeeee;
+        border-bottom-color: #800000;
       }}
       img {{
         max-width: 100%;
