@@ -6,11 +6,15 @@ list in index.html. Deterministic: unchanged input produces identical output.
 """
 
 import html
+import json
 import re
 from datetime import date
 from html.parser import HTMLParser
+from pathlib import Path
+from urllib.request import Request, urlopen
 
 SITE = "https://overlookedpod.substack.com"
+EXCLUDE = {"ideas", "hello", "coming-soon"}
 
 ALLOWED = {
     "p", "h1", "h2", "h3", "h4", "h5", "h6", "ul", "ol", "li", "blockquote",
@@ -226,3 +230,47 @@ def update_index(index_html, items):
     pre, _, rest = index_html.partition(START)
     _, _, post = rest.partition(END)
     return pre + START + "\n" + items + "\n      " + END + post
+
+
+def fetch_posts():
+    posts, offset = [], 0
+    while True:
+        req = Request(
+            f"{SITE}/api/v1/posts?limit=50&offset={offset}",
+            headers={"User-Agent": "Mozilla/5.0 (divij-sinha.github.io sync)"},
+        )
+        with urlopen(req, timeout=30) as resp:
+            batch = json.load(resp)
+        posts += batch
+        if len(batch) < 50:
+            return posts
+        offset += 50
+
+
+def main():
+    root = Path(__file__).resolve().parent.parent
+    posts = [
+        p for p in fetch_posts()
+        if p.get("is_published")
+        and p.get("audience") == "everyone"
+        and slug_of(p) not in EXCLUDE
+    ]
+    posts.sort(key=lambda p: p["post_date"], reverse=True)
+    own_slugs = {slug_of(p) for p in posts}
+
+    (root / "posts").mkdir(exist_ok=True)
+    for p in posts:
+        body = sanitize(p.get("body_html") or "", own_slugs)
+        path = root / "posts" / f"{slug_of(p)}.html"
+        path.write_text(render_post(p, body), encoding="utf-8")
+
+    index = root / "index.html"
+    index.write_text(
+        update_index(index.read_text(encoding="utf-8"), render_items(posts)),
+        encoding="utf-8",
+    )
+    print(f"synced {len(posts)} posts")
+
+
+if __name__ == "__main__":
+    main()
