@@ -74,15 +74,6 @@
         font-size: 1.3rem;
       }
 
-      h2::before {
-        content: "";
-        display: block;
-        width: 2rem;
-        height: 0.2rem;
-        margin-bottom: 0.75rem;
-        background: #800000;
-      }
-
       .lede {
         font-family: "Boldonse", system-ui;
         font-size: 1.25rem;
@@ -112,7 +103,7 @@
       }
 
       a:hover {
-        border-bottom: 0.15rem solid #800000;
+        border-bottom: 0.15rem solid #D86020;
       }
 
       .nav {
@@ -223,8 +214,9 @@
         }
       }
 
-      .hiddenlink {
-        border-bottom: 0.15rem solid #eeeeee;
+      .hiddenlink,
+      .hiddenlink:hover {
+        border-bottom-color: #eeeeee;
       }
 
       @media screen and (max-width: 600px) {
@@ -241,7 +233,7 @@
         }
 
         a:hover {
-          border-bottom: 0.1rem solid #800000;
+          border-bottom: 0.1rem solid #D86020;
         }
 
         .nav {
