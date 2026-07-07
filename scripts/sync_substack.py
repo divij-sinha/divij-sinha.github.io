@@ -173,7 +173,16 @@ POST_PAGE = """<!doctype html>
       h2, h3, h4, h5, h6 {{
         font-family: "Boldonse", system-ui;
         font-weight: 400;
-        font-size: 1.1rem;
+        margin-top: 2rem;
+      }}
+      h2 {{
+        font-size: 1.2rem;
+      }}
+      h3 {{
+        font-size: 1.05rem;
+      }}
+      h4, h5, h6 {{
+        font-size: 1rem;
       }}
       a {{
         border-bottom: 0.15rem solid #333333;
