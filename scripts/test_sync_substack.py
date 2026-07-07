@@ -123,12 +123,12 @@ class TestRender(unittest.TestCase):
         self.assertIn('<h2 id="alpha">Alpha</h2>', page)
         self.assertIn('<a href="#alpha">Alpha</a>', page)
         self.assertIn('<a class="h3" href="#beta">Beta</a>', page)
-        self.assertIn("IntersectionObserver", page)
+        self.assertIn("getBoundingClientRect", page)
 
     def test_render_post_without_headings_has_no_toc(self):
         page = render_post(POST, "<p>just text</p>")
         self.assertNotIn("<nav", page)
-        self.assertNotIn("IntersectionObserver", page)
+        self.assertNotIn("<script", page)
 
     def test_update_index_is_idempotent(self):
         idx = "a\n      <!-- substack:start -->\nOLD\n      <!-- substack:end -->\nb"

@@ -287,25 +287,19 @@ TOC_NAV = """<nav class="toc" aria-label="Contents">
 {links}
     </nav>
     <script>
-      const links = document.querySelectorAll(".toc a");
-      const observer = new IntersectionObserver(
-        (entries) => {{
-          for (const entry of entries) {{
-            if (entry.isIntersecting) {{
-              for (const link of links) {{
-                link.classList.toggle(
-                  "active",
-                  link.hash === "#" + entry.target.id
-                );
-              }}
-            }}
-          }}
-        }},
-        {{ rootMargin: "0px 0px -75% 0px" }}
-      );
-      for (const link of links) {{
-        observer.observe(document.getElementById(link.hash.slice(1)));
-      }}
+      addEventListener("DOMContentLoaded", () => {{
+        const links = [...document.querySelectorAll(".toc a")];
+        const heads = links.map((a) => document.getElementById(a.hash.slice(1)));
+        const spy = () => {{
+          let n = 0;
+          heads.forEach((h, i) => {{
+            if (h.getBoundingClientRect().top <= 100) n = i;
+          }});
+          links.forEach((a, i) => a.classList.toggle("active", i === n));
+        }};
+        addEventListener("scroll", spy, {{ passive: true }});
+        spy();
+      }});
     </script>"""
 
 _HEADING = re.compile(r"<(h[23])>(.*?)</\1>", re.S)
