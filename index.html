@@ -61,9 +61,9 @@
         background: #eeeeee;
         color: #333333;
         font-family: "Figtree", sans-serif;
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         line-height: 1.6;
-        max-width: 680px;
+        max-width: 768px;
         width: 90%;
       }
 
@@ -82,11 +82,18 @@
         margin-top: 3rem;
       }
 
+      /* .lede kept for when the headline returns
       .lede {
         scroll-margin-top: 6.5rem;
-        font-family: "Boldonse", system-ui;
-        font-size: 1.5rem;
-        line-height: 1.8;
+        font-weight: 800;
+        font-size: 2rem;
+        line-height: 1.3;
+        margin-top: 2rem;
+      }
+      */
+
+      #about {
+        scroll-margin-top: 6.5rem;
         margin-top: 2rem;
       }
 
@@ -108,13 +115,17 @@
       }
 
       a {
-        border-bottom: 0.15rem solid #333333;
+        border-bottom: 0.15rem solid #bbbbbb;
         color: #333333;
         text-decoration: none;
       }
 
       a:hover {
-        border-bottom: 0.15rem solid #D86020;
+        border-bottom: 0.15rem solid #687838;
+      }
+
+      ::selection {
+        background: #dbc55f;
       }
 
       .nav {
@@ -139,6 +150,7 @@
         text-align: center;
         padding: 0.5rem 0.35rem;
         font-size: 0.85rem;
+        border-bottom-color: #D86020;
       }
 
       .nav-sprite {
@@ -160,7 +172,7 @@
         border-bottom: none;
       }
 
-      @media screen and (max-width: 900px) {
+      @media screen and (max-width: 940px) {
         .nav-sprite {
           display: none;
         }
@@ -183,9 +195,17 @@
       }
 
       .grid-item {
-        border-left: 0.2rem solid #a0a0a0;
+        border-left: 0.2rem solid #dbc55f;
         padding: 0.25rem 0.75rem;
         margin-bottom: 1rem;
+      }
+
+      #teaching ~ .grid-item {
+        border-left-color: #687838;
+      }
+
+      #projects ~ .grid-container .grid-item {
+        border-left-color: #D86020;
       }
 
       .item-header {
@@ -240,11 +260,11 @@
         }
 
         a {
-          border-bottom: 0.1rem solid #333333;
+          border-bottom: 0.1rem solid #bbbbbb;
         }
 
         a:hover {
-          border-bottom: 0.1rem solid #D86020;
+          border-bottom: 0.1rem solid #687838;
         }
 
         .nav {
@@ -299,17 +319,19 @@
       </a>
     </div>
 
-    <p class="lede" id="about">
+    <!--
+    <p class="lede">
       I study elections in India, and build public data tools for Chicago.
     </p>
-    <img
-      src="col.webp"
-      alt="Divij Sinha"
-      class="about-photo"
-      width="320"
-      height="240"
-    />
-    <p>
+    -->
+    <p id="about">
+      <img
+        src="col.webp"
+        alt="Divij Sinha"
+        class="about-photo"
+        width="320"
+        height="240"
+      />
       I'm a PhD student in
       <a href="https://politicaleconomy.uchicago.edu/"
         >Political Economy at the University of Chicago</a
@@ -348,7 +370,9 @@
         >[github]</a
       >
     </h3>
-    <p class="org">Metric Geometry and Gerrymandering Lab</p>
+    <p class="org">
+      <a href="https://mggg.org">Metric Geometry and Gerrymandering Lab</a>
+    </p>
     <div class="grid-item">
       <div class="item-header">Election Survey Analysis</div>
       <div class="item-body">
@@ -357,7 +381,11 @@
         at Cornell University (Summer 2024).
       </div>
     </div>
-    <p class="org">Mansueto Institute for Urban Innovation</p>
+    <p class="org">
+      <a href="https://miurban.uchicago.edu"
+        >Mansueto Institute for Urban Innovation</a
+      >
+    </p>
     <div class="grid-item">
       <div class="item-header">Cook County Property Tax</div>
       <div class="item-body">
@@ -385,7 +413,9 @@
         to study localised segregation patterns.
       </div>
     </div>
-    <p class="org">Center for Spatial Data Science</p>
+    <p class="org">
+      <a href="https://spatial.uchicago.edu">Center for Spatial Data Science</a>
+    </p>
     <div class="grid-item">
       <div class="item-header">Chicago Neighborhood Project</div>
       <div class="item-body">
@@ -406,7 +436,9 @@
         >
       </div>
     </div>
-    <p class="org">Indian Institute for Human Settlements</p>
+    <p class="org">
+      <a href="https://iihs.co.in">Indian Institute for Human Settlements</a>
+    </p>
     <div class="grid-item">
       <div class="item-header">Urban Informal Sector Policy Study</div>
       <div class="item-body">
@@ -541,7 +573,6 @@
     </div>
 
     <h2 id="teaching">Teaching</h2>
-    <p><a href="teaching">Selected student feedback &rarr;</a></p>
     <div class="grid-item">
       <div class="item-header">
         University of Illinois, Chicago &mdash; Adjunct Instructor
@@ -569,6 +600,7 @@
         professionals.
       </div>
     </div>
+    <p><a href="teaching">Selected student feedback</a></p>
 
     <h2 id="projects">Personal</h2>
     <p>

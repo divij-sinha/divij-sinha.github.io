@@ -159,9 +159,9 @@ POST_PAGE = """<!doctype html>
         background: #eeeeee;
         color: #333333;
         font-family: "Figtree", sans-serif;
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         line-height: 1.6;
-        max-width: 680px;
+        max-width: 768px;
         width: 90%;
       }}
       h1 {{
@@ -185,12 +185,15 @@ POST_PAGE = """<!doctype html>
         font-size: 1rem;
       }}
       a {{
-        border-bottom: 0.15rem solid #333333;
+        border-bottom: 0.15rem solid #bbbbbb;
         color: #333333;
         text-decoration: none;
       }}
       a:hover {{
-        border-bottom-color: #D86020;
+        border-bottom-color: #687838;
+      }}
+      ::selection {{
+        background: #dbc55f;
       }}
       img {{
         max-width: 100%;
@@ -240,7 +243,7 @@ POST_PAGE = """<!doctype html>
       .toc {{
         position: fixed;
         top: 5rem;
-        left: calc(50% + 22rem);
+        left: calc(50% + 24.5rem);
         width: 14rem;
         font-size: 0.85rem;
       }}
@@ -260,7 +263,7 @@ POST_PAGE = """<!doctype html>
         color: #333333;
         font-weight: 600;
       }}
-      @media screen and (max-width: 1200px) {{
+      @media screen and (max-width: 1260px) {{
         .toc {{
           display: none;
         }}
