@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: diagnose substack access
+        run: |
+          for url in "https://overlookedpod.substack.com/api/v1/posts?limit=50" "https://overlookedpod.substack.com/feed"; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" "$url")
+            echo "$url -> $code"
+          done
       - run: python3 scripts/sync_substack.py
       - run: |
           git config user.name "github-actions[bot]"
