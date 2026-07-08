@@ -215,12 +215,14 @@
         margin-bottom: 1rem;
       }
 
-      #teaching ~ .grid-item {
-        border-left-color: #687838;
+      /* Publications cards = blue/teal. Must precede the #teaching rule so
+         Teaching's olive overrides it (equal specificity, later wins). */
+      #publications ~ .grid-item {
+        border-left-color: #207890;
       }
 
-      #journalism ~ .grid-container .grid-item {
-        border-left-color: #207890;
+      #teaching ~ .grid-item {
+        border-left-color: #687838;
       }
 
       #projects ~ .grid-container .grid-item {
@@ -269,6 +271,16 @@
         color: #555555;
       }
 
+      /* Each checked radio rings its own active label for keyboard users. */
+      #tab-health:focus-visible ~ .logo-wall label[for="tab-health"],
+      #tab-woc:focus-visible ~ .logo-wall label[for="tab-woc"],
+      #tab-stopwatch:focus-visible ~ .logo-wall label[for="tab-stopwatch"],
+      #tab-arpa:focus-visible ~ .logo-wall label[for="tab-arpa"],
+      #tab-ptax:focus-visible ~ .logo-wall label[for="tab-ptax"] {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
       /* Active logo: full colour + its accent underline bar. */
       #tab-health:checked ~ .logo-wall label[for="tab-health"],
       #tab-woc:checked ~ .logo-wall label[for="tab-woc"],
@@ -305,6 +317,22 @@
       #tab-arpa:checked ~ .panels .panel-arpa,
       #tab-ptax:checked ~ .panels .panel-ptax {
         display: block;
+        animation: panel-fade 0.2s ease;
+      }
+
+      @keyframes panel-fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .panel {
+          animation: none !important;
+        }
       }
 
       .item-header {
@@ -321,6 +349,78 @@
         font-weight: 400;
         font-size: 0.85rem;
         margin: 2rem 0 0.75rem;
+      }
+
+      /* "Now" snapshot in About — yellow accent, matches card conventions. */
+      .now {
+        border-left: 0.2rem solid #ffc53a;
+        padding: 0.25rem 0.75rem;
+        margin: 2rem 0;
+      }
+
+      .now-label {
+        font-family: "Boldonse", system-ui;
+        font-weight: 400;
+        font-size: 0.85rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .now-body {
+        color: #555555;
+        font-size: 0.95rem;
+      }
+
+      /* Clickable colophon legend (index only): 4 gradient bands as jump-links,
+         name revealed on hover. Reproduces the shared .colophon look. */
+      .colophon-nav {
+        display: flex;
+        width: 6rem;
+        margin: 4rem 0 2rem;
+        gap: 0;
+      }
+
+      .colophon-band {
+        flex: 1;
+        height: 0.2rem;
+        border-bottom: none;
+        position: relative;
+        transition: transform 0.15s, height 0.15s, filter 0.15s;
+      }
+
+      .colophon-band:hover {
+        height: 0.4rem;
+        transform: translateY(-2px);
+        filter: brightness(1.15);
+      }
+
+      /* Section name revealed above the hovered band. */
+      .colophon-band::after {
+        content: attr(data-label);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 0.4rem;
+        font-family: "Boldonse", system-ui;
+        font-size: 0.6rem;
+        white-space: nowrap;
+        color: #555555;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.15s;
+      }
+
+      .colophon-band:hover::after {
+        opacity: 1;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .colophon-band {
+          transition: none;
+        }
+        .colophon-band:hover {
+          transform: none;
+        }
       }
 
       .about-photo {
@@ -437,6 +537,16 @@
       Research Associate at the Urban Informatics Lab at the
       <a href="https://iihs.co.in">Indian Institute for Human Settlements</a>.
     </p>
+
+    <!--
+    <div class="now">
+      <div class="now-label">Now</div>
+      <div class="now-body">
+        In Bangalore for the rest of Summer. Researching Indian Elections, and
+        taking a break.
+      </div>
+    </div>
+    -->
 
     <h2 id="work">Work</h2>
 
@@ -655,7 +765,7 @@
       </div>
     </div>
 
-    <h3>Publications</h3>
+    <h3 id="publications">Publications</h3>
     <div class="grid-item">
       <div class="item-header">
         ILO/IIHS &mdash; Domestic Labour Studies (2023)
@@ -816,6 +926,35 @@
         >Substack</a
       ><br />
     </p>
-    <hr class="colophon" />
+    <nav class="colophon-nav" aria-label="Section legend">
+      <a
+        class="colophon-band"
+        href="#work"
+        data-label="Work"
+        title="Work"
+        style="background: #ffc53a"
+      ></a>
+      <a
+        class="colophon-band"
+        href="#publications"
+        data-label="Publications"
+        title="Publications"
+        style="background: #207890"
+      ></a>
+      <a
+        class="colophon-band"
+        href="#projects"
+        data-label="Personal"
+        title="Personal"
+        style="background: #d86020"
+      ></a>
+      <a
+        class="colophon-band"
+        href="#teaching"
+        data-label="Teaching"
+        title="Teaching"
+        style="background: #687838"
+      ></a>
+    </nav>
   </body>
 </html>
