@@ -227,6 +227,86 @@
         border-left-color: #D86020;
       }
 
+      /* Local Data Journalism: pure-CSS tabs. Hidden radios drive a wall of
+         branded titles (labels) and a single shared panel below. */
+      .tab-radio {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .logo-wall {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0.75rem 1rem;
+        margin: 1.5rem 0;
+      }
+
+      @media screen and (max-width: 600px) {
+        .logo-wall {
+          flex-wrap: wrap;
+        }
+      }
+
+      .logo {
+        font-family: "Boldonse", system-ui;
+        font-weight: 400;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        white-space: nowrap;
+        cursor: pointer;
+        padding-bottom: 0.35rem;
+        border-bottom: 4px solid transparent;
+        color: #999999;
+        transition: color 0.15s, border-color 0.15s;
+      }
+
+      .logo .accent {
+        color: inherit;
+      }
+
+      .logo:hover {
+        color: #555555;
+      }
+
+      /* Active logo: full colour + its accent underline bar. */
+      #tab-health:checked ~ .logo-wall label[for="tab-health"],
+      #tab-woc:checked ~ .logo-wall label[for="tab-woc"],
+      #tab-stopwatch:checked ~ .logo-wall label[for="tab-stopwatch"],
+      #tab-arpa:checked ~ .logo-wall label[for="tab-arpa"],
+      #tab-ptax:checked ~ .logo-wall label[for="tab-ptax"] {
+        color: #333333;
+        border-bottom-color: var(--accent);
+      }
+
+      #tab-health:checked ~ .logo-wall label[for="tab-health"] .accent,
+      #tab-woc:checked ~ .logo-wall label[for="tab-woc"] .accent,
+      #tab-stopwatch:checked ~ .logo-wall label[for="tab-stopwatch"] .accent,
+      #tab-arpa:checked ~ .logo-wall label[for="tab-arpa"] .accent,
+      #tab-ptax:checked ~ .logo-wall label[for="tab-ptax"] .accent {
+        color: var(--accent);
+      }
+
+      .panel {
+        display: none;
+      }
+
+      .panel .grid-item {
+        border-left-color: var(--accent);
+      }
+
+      .panel .meta {
+        margin: 0.15rem 0 0;
+      }
+
+      #tab-health:checked ~ .panels .panel-health,
+      #tab-woc:checked ~ .panels .panel-woc,
+      #tab-stopwatch:checked ~ .panels .panel-stopwatch,
+      #tab-arpa:checked ~ .panels .panel-arpa,
+      #tab-ptax:checked ~ .panels .panel-ptax {
+        display: block;
+      }
+
       .item-header {
         font-weight: 600;
         margin-bottom: 0.15rem;
@@ -474,64 +554,103 @@
       (2024&ndash;2026), leading teams of research assistants on urban-focused
       data journalism collaborations with Chicago newsrooms.
     </p>
-    <div class="grid-container grid-half">
-      <div class="grid-item">
-        <div class="item-header">Hospital Price Transparency</div>
-        <div class="item-body">
-          Extracted and standardised hospital pricing data across the Chicago
-          metro area (208M+ rows) with Profs. Christopher Berry and Joshua
-          Gottlieb, supporting analysis of price variation across hospitals and
-          insurers.
-          <a
-            href="https://chicago.suntimes.com/the-watchdogs/2026/06/19/hospital-billing-transparency-federal-law-failed-consumer-health7"
-            >[Sun-Times story]</a
-          >
-          <a href="https://healthcare.miurban-dashboards.org/">[site]</a>
+    <!-- Radios drive the tabs; the first is checked so a panel shows by default. -->
+    <input class="tab-radio" type="radio" name="jtab" id="tab-health" checked />
+    <input class="tab-radio" type="radio" name="jtab" id="tab-woc" />
+    <input class="tab-radio" type="radio" name="jtab" id="tab-stopwatch" />
+    <input class="tab-radio" type="radio" name="jtab" id="tab-arpa" />
+    <input class="tab-radio" type="radio" name="jtab" id="tab-ptax" />
+
+    <div class="logo-wall">
+      <label class="logo" for="tab-health" style="--accent: #4aa3df"
+        ><span class="accent">Health</span>care</label
+      >
+      <label class="logo" for="tab-woc" style="--accent: #275d38"
+        ><span class="accent">Who Owns</span> Chicago?</label
+      >
+      <label class="logo" for="tab-stopwatch" style="--accent: #007396"
+        ><span class="accent">Stop</span>Watch</label
+      >
+      <label class="logo" for="tab-arpa" style="--accent: #59315f"
+        ><span class="accent">ARPA</span> Audit</label
+      >
+      <label class="logo" for="tab-ptax" style="--accent: #a9431e"
+        ><span class="accent">Property Tax Explainer</span></label
+      >
+    </div>
+
+    <div class="panels">
+      <div class="panel panel-health" style="--accent: #4aa3df">
+        <div class="grid-item">
+          <div class="item-body">
+            Extracted and standardised hospital pricing data across the Chicago
+            metro area (208M+ rows), supporting analysis of price variation
+            across hospitals and insurers.
+          </div>
+          <p class="meta">
+            <a
+              href="https://chicago.suntimes.com/the-watchdogs/2026/06/19/hospital-billing-transparency-federal-law-failed-consumer-health7"
+              >[Sun-Times story]</a
+            >
+            <a href="https://healthcare.miurban-dashboards.org/">[site]</a>
+          </p>
         </div>
       </div>
-      <div class="grid-item">
-        <div class="item-header">Who Owns Chicago?</div>
-        <div class="item-body">
-          Built a property ownership tool that uncovers networks of LLC
-          landlords behind the city's rental housing, matching parcels and
-          entities by common addresses and names.
-          <a
-            href="https://chicago.suntimes.com/the-watchdogs/2025/09/05/chicago-landlords-renters-property-management-llc"
-            >[Sun-Times story]</a
-          >
-          <a href="https://whoownschi.miurban-dashboards.org/">[site]</a>
+      <div class="panel panel-woc" style="--accent: #275d38">
+        <div class="grid-item">
+          <div class="item-body">
+            Built a property ownership tool that uncovers networks of LLC
+            landlords behind the city's rental housing, matching parcels and
+            entities by common addresses and names.
+          </div>
+          <p class="meta">
+            <a
+              href="https://chicago.suntimes.com/the-watchdogs/2025/09/05/chicago-landlords-renters-property-management-llc"
+              >[Sun-Times story]</a
+            >
+            <a href="https://whoownschi.miurban-dashboards.org/">[site]</a>
+          </p>
         </div>
       </div>
-      <div class="grid-item">
-        <div class="item-header">CTA StopWatch</div>
-        <div class="item-body">
-          Dashboard tracking daily CTA bus metrics from ChiHackNight's Ghost
-          Buses dataset.
-          <a
-            href="https://www.chicagotribune.com/2024/12/30/cta-bus-service-analysis/"
-            >[Tribune story]</a
-          >
-          <a href="https://ctastopwatch.miurban-dashboards.org">[site]</a>
-          <a href="https://github.com/mansueto-institute/cta-stop-watch"
-            >[repo]</a
-          >
+      <div class="panel panel-stopwatch" style="--accent: #007396">
+        <div class="grid-item">
+          <div class="item-body">
+            Dashboard tracking daily CTA bus metrics from ChiHackNight's Ghost
+            Buses dataset.
+          </div>
+          <p class="meta">
+            <a
+              href="https://www.chicagotribune.com/2024/12/30/cta-bus-service-analysis/"
+              >[Tribune story]</a
+            >
+            <a href="https://ctastopwatch.miurban-dashboards.org">[site]</a>
+            <a href="https://github.com/mansueto-institute/cta-stop-watch"
+              >[repo]</a
+            >
+          </p>
         </div>
       </div>
-      <div class="grid-item">
-        <div class="item-header">ARPA Audit</div>
-        <div class="item-body">
-          Dashboard auditing how Chicago allocated and spent its American
-          Rescue Plan Act (ARPA) federal relief funds.
-          <a href="https://arpaudit.miurban-dashboards.org">[site]</a>
+      <div class="panel panel-arpa" style="--accent: #59315f">
+        <div class="grid-item">
+          <div class="item-body">
+            Dashboard auditing how Chicago allocated and spent its American
+            Rescue Plan Act (ARPA) federal relief funds.
+          </div>
+          <p class="meta">
+            <a href="https://arpaudit.miurban-dashboards.org">[site]</a>
+          </p>
         </div>
       </div>
-      <div class="grid-item">
-        <div class="item-header">Property Tax Explainer</div>
-        <div class="item-body">
-          Interactive explainer that breaks down Cook County property tax
-          bills for any address or PIN and compares changes across assessment
-          years.
-          <a href="https://ptaxexplainer.miurban-dashboards.org">[site]</a>
+      <div class="panel panel-ptax" style="--accent: #a9431e">
+        <div class="grid-item">
+          <div class="item-body">
+            Interactive explainer that breaks down Cook County property tax
+            bills for any address or PIN and compares changes across assessment
+            years.
+          </div>
+          <p class="meta">
+            <a href="https://ptaxexplainer.miurban-dashboards.org">[site]</a>
+          </p>
         </div>
       </div>
     </div>
