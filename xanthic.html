@@ -13,43 +13,271 @@
     <script src="https://js-dos.com/6.22/current/js-dos.js"></script>
     <link rel="stylesheet" href="/style.css" />
     <style>
-      h1 {
+      /* --- Page-local tokens (built on the site's existing palette) ---
+         The only new value is --inset: a warm grey biased toward the yellow
+         accent, used behind the black game screen so the "console" separates
+         from the #eeeeee page ground. Everything else is site-standard. */
+      :root {
+        --screen: #000000;
+        --accent: #ffc53a;
+        --inset: #e4e1d7;
+        --bezel: #cbc7ba;
+      }
+
+      .masthead {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0.5rem 0 0.25rem;
+      }
+
+      .masthead h1 {
         font-family: "Boldonse", system-ui;
         font-weight: 400;
         font-size: 1.5rem;
-        line-height: 1.5;
+        line-height: 1.2;
+        margin: 0;
+        text-wrap: balance;
       }
 
-      .game {
+      .masthead img {
+        width: 4.5rem;
+        height: auto;
+        flex: none;
+        image-rendering: pixelated;
+      }
+
+      .eyebrow {
+        font-family: "Figtree", sans-serif;
+        font-weight: 700;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #555555;
+        margin: 2.5rem 0 0.75rem;
+      }
+
+      .lede {
+        max-width: 34em;
+      }
+
+      /* --- The console: one frame shared by the shots viewer and the game --- */
+      .console {
+        background: var(--inset);
+        border: 0.15rem solid var(--bezel);
+        border-radius: 0.6rem;
+        padding: 0.6rem;
+      }
+
+      .screen {
+        position: relative;
         width: 100%;
         aspect-ratio: 4 / 3;
-        background: #000000;
-        border-radius: 0.5rem;
-        margin: 1rem 0;
+        background: var(--screen);
+        border-radius: 0.3rem;
+        overflow: hidden;
       }
 
+      /* --- Screens section: pure-CSS lightbox driven by hidden radios --- */
+      .shots input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* The big viewer stays collapsed until a thumbnail is chosen, so the
+         page leads with the filmstrip and spends no space on an empty screen. */
+      .shots .console {
+        display: none;
+        margin-top: 0.75rem;
+      }
+
+      .shots input:checked ~ .console {
+        display: block;
+      }
+
+      .shots .screen img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: none;
+        image-rendering: pixelated;
+      }
+
+      #shot-1:checked ~ .console .big-1,
+      #shot-2:checked ~ .console .big-2,
+      #shot-3:checked ~ .console .big-3,
+      #shot-4:checked ~ .console .big-4,
+      #shot-5:checked ~ .console .big-5,
+      #shot-6:checked ~ .console .big-6 {
+        display: block;
+      }
+
+      .caption {
+        color: #555555;
+        font-size: 0.9rem;
+        margin: 0.75rem 0 0;
+        min-height: 1.4em;
+      }
+
+      /* Show the caption belonging to the checked shot; .cap-0 is the
+         default prompt, visible until any thumbnail is chosen. */
+      .caption span {
+        display: none;
+      }
+      .caption .cap-0 {
+        display: inline;
+      }
+      .shots input:checked ~ .caption .cap-0 {
+        display: none;
+      }
+      #shot-1:checked ~ .caption .cap-1,
+      #shot-2:checked ~ .caption .cap-2,
+      #shot-3:checked ~ .caption .cap-3,
+      #shot-4:checked ~ .caption .cap-4,
+      #shot-5:checked ~ .caption .cap-5,
+      #shot-6:checked ~ .caption .cap-6 {
+        display: inline;
+      }
+
+      .filmstrip {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+
+      .filmstrip label {
+        display: block;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        border: 0.15rem solid transparent;
+        overflow: hidden;
+        line-height: 0;
+        transition: border-color 0.15s ease;
+      }
+
+      .filmstrip label:hover {
+        border-color: #bbbbbb;
+      }
+
+      .filmstrip img {
+        width: 100%;
+        height: auto;
+        display: block;
+        background: var(--screen);
+        image-rendering: pixelated;
+      }
+
+      #shot-1:checked ~ .filmstrip label[for="shot-1"],
+      #shot-2:checked ~ .filmstrip label[for="shot-2"],
+      #shot-3:checked ~ .filmstrip label[for="shot-3"],
+      #shot-4:checked ~ .filmstrip label[for="shot-4"],
+      #shot-5:checked ~ .filmstrip label[for="shot-5"],
+      #shot-6:checked ~ .filmstrip label[for="shot-6"] {
+        border-color: var(--accent);
+      }
+
+      /* Keyboard focus lands on the hidden radio; surface it on its thumb. */
+      #shot-1:focus-visible ~ .filmstrip label[for="shot-1"],
+      #shot-2:focus-visible ~ .filmstrip label[for="shot-2"],
+      #shot-3:focus-visible ~ .filmstrip label[for="shot-3"],
+      #shot-4:focus-visible ~ .filmstrip label[for="shot-4"],
+      #shot-5:focus-visible ~ .filmstrip label[for="shot-5"],
+      #shot-6:focus-visible ~ .filmstrip label[for="shot-6"] {
+        outline: 0.15rem solid var(--accent);
+        outline-offset: 0.1rem;
+      }
+
+      /* --- Play section: the live emulator in a matching console frame --- */
+      #dos-canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      @media screen and (max-width: 600px) {
+        .masthead img {
+          width: 3.5rem;
+        }
+        .filmstrip {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
     </style>
   </head>
 
   <body>
     <p class="home"><a href="/">Divij Sinha</a></p>
-    <h1>Pokemon Xanthic</h1>
-    <div style="text-align: center">
+
+    <header class="masthead">
       <img
         src="static/charizard.png"
-        alt="Charizard"
-        style="width: 8rem; height: auto; image-rendering: pixelated"
+        alt="Pixel-art Charizard sprite"
       />
-    </div>
-    <p>
+      <h1>Pokemon Xanthic</h1>
+    </header>
+
+    <p class="lede">
       A C++ game built from scratch with Shivesh Sood, Venkat Krishnamohan, and
-      Vinayak Gouda. Playable in the browser below.
+      Vinayak Gouda. Built in 2014-15 using Borland C++ 3.1 (1992). Playable in
+      the browser below.
     </p>
 
-    <canvas id="dos-canvas" class="game"></canvas>
+    <p class="eyebrow">Screens</p>
+    <div class="shots">
+      <input type="radio" name="shot" id="shot-1" />
+      <input type="radio" name="shot" id="shot-2" />
+      <input type="radio" name="shot" id="shot-3" />
+      <input type="radio" name="shot" id="shot-4" />
+      <input type="radio" name="shot" id="shot-5" />
+      <input type="radio" name="shot" id="shot-6" />
+
+      <div class="filmstrip">
+        <label for="shot-1"><img src="static/xanthic-screenshots/title.png" alt="Title screen thumbnail" loading="lazy" /></label>
+        <label for="shot-2"><img src="static/xanthic-screenshots/intro.png" alt="Intro thumbnail" loading="lazy" /></label>
+        <label for="shot-3"><img src="static/xanthic-screenshots/team-select.png" alt="Team select thumbnail" loading="lazy" /></label>
+        <label for="shot-4"><img src="static/xanthic-screenshots/battle.png" alt="Battle thumbnail" loading="lazy" /></label>
+        <label for="shot-5"><img src="static/xanthic-screenshots/elite-four.png" alt="Elite Four thumbnail" loading="lazy" /></label>
+        <label for="shot-6"><img src="static/xanthic-screenshots/charizard.png" alt="Charizard save-screen thumbnail" loading="lazy" /></label>
+      </div>
+
+      <div class="console">
+        <div class="screen">
+          <img class="big-1" src="static/xanthic-screenshots/title.png" alt="Xanthic Version title screen" />
+          <img class="big-2" src="static/xanthic-screenshots/intro.png" alt="Professor's intro: this world is inhabited by creatures called Pokemon" />
+          <img class="big-3" src="static/xanthic-screenshots/team-select.png" alt="Choosing a team of six Pokemon from a numbered roster" />
+          <img class="big-4" src="static/xanthic-screenshots/battle.png" alt="Pokemon battle: Magikarp versus Pikachu with HP bars" />
+          <img class="big-5" src="static/xanthic-screenshots/elite-four.png" alt="The Elite Four menu screen" />
+          <img class="big-6" src="static/xanthic-screenshots/charizard.png" alt="Charizard line art with a game-data-saved message" />
+        </div>
+      </div>
+
+      <p class="caption">
+        <span class="cap-0">Pick a screen to enlarge it.</span>
+        <span class="cap-1">Title</span>
+        <span class="cap-2">Intro</span>
+        <span class="cap-3">Team select</span>
+        <span class="cap-4">Battle</span>
+        <span class="cap-5">Elite Four</span>
+        <span class="cap-6">Save screen</span>
+      </p>
+    </div>
+
+    <p class="eyebrow">Play</p>
+    <div class="console">
+      <div class="screen">
+        <canvas id="dos-canvas"></canvas>
+      </div>
+    </div>
+    <p class="caption">Click the screen to play; click away to release your keyboard.</p>
+
     <script>
       Dos(document.getElementById("dos-canvas"), {
         wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
+        autolock: true,
       }).ready((fs, main) => {
         fs.extract("static/finale.zip").then(() => {
           main(["-c", "FINALE.EXE"]);
