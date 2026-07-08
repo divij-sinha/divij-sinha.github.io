@@ -42,23 +42,25 @@
     </p>
 
     <div class="generator">
-      <svg id="map" viewBox="0 0 440 480" role="img" aria-label="Map of India, click a state to select it"></svg>
+      <div class="panel">
+        <svg id="map" viewBox="0 0 440 480" role="img" aria-label="Map of India, click a state to select it"></svg>
 
-      <div class="controls">
-        <label for="states-select">States (leave empty for any region)</label>
-        <select id="states-select" multiple size="8"></select>
+        <div class="controls">
+          <label for="states-select">States (leave empty for any region)</label>
+          <select id="states-select" multiple size="8"></select>
 
-        <label for="start-text">Start with</label>
-        <input id="start-text" type="text" placeholder="e.g. ka" />
+          <label for="start-text">Start with</label>
+          <input id="start-text" type="text" placeholder="e.g. ka" />
 
-        <label for="count">How many</label>
-        <input id="count" type="number" min="1" max="25" value="8" />
+          <label for="count">How many</label>
+          <input id="count" type="number" min="1" max="25" value="8" />
 
-        <button id="generate-btn">Generate</button>
-
-        <div id="results">
-          <p class="meta">Press <strong>Generate</strong> to create names.</p>
+          <button id="generate-btn">Generate</button>
         </div>
+      </div>
+
+      <div id="results">
+        <p class="meta">Press <strong>Generate</strong> to create names.</p>
       </div>
     </div>
 

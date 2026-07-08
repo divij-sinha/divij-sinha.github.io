@@ -31,7 +31,7 @@ async function main() {
 
   function fillFor(state, isSelected) {
     if (!state.selectable) return "#e5e5e5";
-    return isSelected ? "#d86020" : "#94a3b8";
+    return isSelected ? "#ffc53a" : "#94a3b8";
   }
 
   for (const state of mapData.states) {
