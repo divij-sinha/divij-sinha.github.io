@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Indian Place Name Generator - Divij Sinha</title>
+    <meta
+      name="description"
+      content="A tiny character-level LSTM trained on 2011 census town/village names. Runs entirely in the browser."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://divij-sinha.github.io/place-generator/" />
+    <link
+      rel="preload"
+      href="/Figtree-VariableFont_wght.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/Boldonse-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="page-style.css" />
+  </head>
+
+  <body>
+    <p class="home"><a href="/">Divij Sinha</a></p>
+    <h1>Indian Place Name Generator</h1>
+    <p>
+      A tiny character-level LSTM trained on 2011 census town/village names.
+      <a href="https://github.com/divij-sinha/indian-place-generator">[repo]</a>
+    </p>
+    <p>
+      Click states on the map (or use the list) to condition generation on a
+      region, optionally seed a starting prefix, then pick how many names to
+      generate.
+    </p>
+
+    <div class="generator">
+      <svg id="map" viewBox="0 0 440 480" role="img" aria-label="Map of India, click a state to select it"></svg>
+
+      <div class="controls">
+        <label for="states-select">States (leave empty for any region)</label>
+        <select id="states-select" multiple size="8"></select>
+
+        <label for="start-text">Start with</label>
+        <input id="start-text" type="text" placeholder="e.g. ka" />
+
+        <label for="count">How many</label>
+        <input id="count" type="number" min="1" max="25" value="8" />
+
+        <button id="generate-btn">Generate</button>
+
+        <div id="results">
+          <p class="meta">Press <strong>Generate</strong> to create names.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="colophon" />
+
+    <script src="model.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

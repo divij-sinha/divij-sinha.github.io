@@ -1,0 +1,94 @@
+h1 {
+  font-family: "Boldonse", system-ui;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.generator {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin: 1.5rem 0;
+}
+
+#map {
+  flex: 1 1 320px;
+  max-width: 440px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#map path {
+  stroke: #ffffff;
+  stroke-width: 0.5;
+  cursor: default;
+}
+
+#map path.selectable {
+  cursor: pointer;
+}
+
+.controls {
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.controls label {
+  font-size: 0.9rem;
+  color: #555555;
+  margin-top: 0.5rem;
+}
+
+.controls select,
+.controls input {
+  font-family: "Figtree", sans-serif;
+  font-size: 1rem;
+  padding: 0.35rem;
+  border: 0.1rem solid #bbbbbb;
+  border-radius: 0.25rem;
+  background: #ffffff;
+  color: #333333;
+}
+
+#generate-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-family: "Figtree", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  background: #d86020;
+  border: 0.1rem solid #d86020;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#generate-btn:hover {
+  background: #b94e16;
+  border-color: #b94e16;
+}
+
+#results {
+  margin-top: 1rem;
+}
+
+#results ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#results li {
+  margin: 0.35rem 0;
+}
+
+@media screen and (max-width: 600px) {
+  .generator {
+    flex-direction: column;
+  }
+}
