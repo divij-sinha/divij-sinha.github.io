@@ -230,15 +230,19 @@ POST_PAGE = """<!doctype html>
   </head>
 
   <body>
-    <p class="home"><a href="/">Divij Sinha</a></p>
+    <header><p class="home"><a href="/">Divij Sinha</a></p></header>
+    <main>
     <h1>{title}</h1>
     <p class="meta">{long_date} &middot; <a href="{canonical_url}">on substack</a></p>
     {toc}{body}
+    </main>
+    <footer>
     <p class="meta footer">
       <a href="/">home</a> &middot;
       <a href="{canonical_url}">read on substack</a>
     </p>
     <hr class="colophon" />
+    </footer>
   </body>
 </html>
 """

@@ -473,7 +473,7 @@
   </head>
 
   <body>
-    <div class="nav">
+    <nav class="nav" aria-label="Main">
       <a class="hiddenlink" href="https://divij-sinha.github.io">
         <h1>Divij Sinha</h1>
       </a>
@@ -499,8 +499,9 @@
       <a class="nav-sprite" href="xanthic">
         <img src="static/charizard.png" alt="Pokemon Xanthic" />
       </a>
-    </div>
+    </nav>
 
+    <main>
     <!--
     <p class="lede">
       I study elections in India, and build public data tools for Chicago.
@@ -664,7 +665,10 @@
       (2024&ndash;2026), leading teams of research assistants on urban-focused
       data journalism collaborations with Chicago newsrooms.
     </p>
-    <!-- Radios drive the tabs; the first is checked so a panel shows by default. -->
+    <!-- Radios drive the tabs; the first is checked so a panel shows by default.
+         The group wrapper names them for screen readers; radios, wall and
+         panels must stay siblings for the :checked ~ selectors. -->
+    <div role="group" aria-labelledby="journalism">
     <input class="tab-radio" type="radio" name="jtab" id="tab-health" checked />
     <input class="tab-radio" type="radio" name="jtab" id="tab-woc" />
     <input class="tab-radio" type="radio" name="jtab" id="tab-stopwatch" />
@@ -763,6 +767,7 @@
           </p>
         </div>
       </div>
+    </div>
     </div>
 
     <h3 id="publications">Publications</h3>
@@ -932,6 +937,7 @@
         >Substack</a
       ><br />
     </p>
+    </main>
     <nav class="colophon-nav" aria-label="Section legend">
       <a
         class="colophon-band"
